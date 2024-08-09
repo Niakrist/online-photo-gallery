@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery</title>
     <link rel="stylesheet" href="style/index.css" />
-    <script defer type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script defer src="./scripts/masonry.pkgd.min.js"></script>
   </head>
 
   <body>
@@ -18,16 +19,7 @@
     </header>
     <main class="main">
       <section class="gallery">
-        <div class="container gallery__wrapper">
-          <ul
-            class="grid"
-            style="
-              display: flex;
-              flex-wrap: wrap;
-              align-items: flex-start;
-              gap: 30px;
-            "></ul>
-        </div>
+        <div class="container gallery__wrapper"></div>
       </section>
     </main>
   </body>
