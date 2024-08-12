@@ -5,7 +5,8 @@ export const renderPhoto = (photoWrapper, photo) => {
   const photoPicture = new Image();
   photoPicture.className = "photo__picture";
   photoPicture.src = photo.urls.regular;
-  photoPicture.alt = photo.location?.name || "";
+  photoPicture.alt =
+    photo.alt_description || photo.description || photo.location?.name;
   photoPicture.style.maxHeight = "80vh";
 
   const photoAuthorLink = createElem("a", {
@@ -14,7 +15,7 @@ export const renderPhoto = (photoWrapper, photo) => {
   });
 
   const photoAuthorImg = new Image();
-  photoAuthorImg.loading = "lazy";
+  photoAuthorImg.className = "photo__author";
   photoAuthorImg.src = photo.user.profile_image.medium;
   photoAuthorImg.alt = photo.user.bio;
   photoAuthorImg.title = photo.user.name;
@@ -29,11 +30,15 @@ export const renderPhoto = (photoWrapper, photo) => {
     textContent: photo.likes,
   });
 
+  if (!buttonLikes.likerdByUser) {
+    buttonLikes.classList.add("photo__like_o");
+  }
+
   const downloadLink = createElem("a", {
     className: "photo__download",
     download: true,
     target: "_blank",
-    href: photo.urls.regular,
+    href: photo.links.download,
   });
 
   photoWrapper.append(photoPicture, photoAuthorLink, photoControl);
