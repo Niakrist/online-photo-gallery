@@ -14,7 +14,12 @@ export const getData = async ({ count, page, id }) => {
     url.pathname += `/${id}`;
   }
 
-  return fetch(url)
+  const headers = {};
+  if (localStorage.getItem("token")) {
+    headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  }
+
+  return fetch(url, { headers })
     .then((data) => data.json())
     .catch((err) => console.log(`Возникла ошибка ${err}`));
 };

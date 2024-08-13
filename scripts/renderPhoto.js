@@ -1,7 +1,6 @@
 import { createElem } from "./createElem.js";
 
 export const renderPhoto = (photoWrapper, photo) => {
-  console.log(photo);
   const photoPicture = new Image();
   photoPicture.className = "photo__picture";
   photoPicture.src = photo.urls.regular;
@@ -28,6 +27,7 @@ export const renderPhoto = (photoWrapper, photo) => {
     id: photo.id,
     className: "photo__like",
     textContent: photo.likes,
+    likerdByUser: photo.liked_by_user,
   });
 
   if (!buttonLikes.likerdByUser) {
@@ -45,5 +45,5 @@ export const renderPhoto = (photoWrapper, photo) => {
   photoAuthorLink.append(photoAuthorImg, userName);
   photoControl.append(buttonLikes, downloadLink);
 
-  console.log("photoWrapper: ", photoWrapper);
+  return buttonLikes;
 };

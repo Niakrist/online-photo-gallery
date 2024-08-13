@@ -2,6 +2,7 @@ import { authorization } from "./authorization.js";
 import { getData } from "./getData.js";
 import { renderGallery } from "./renderGallery.js";
 import { renderPhoto } from "./renderPhoto.js";
+import { handlerLike } from "./handlerLike.js";
 
 const init = async ({
   selectorGalleryWrapper,
@@ -24,7 +25,13 @@ const init = async ({
     const id = url.searchParams.get("photo");
     if (id) {
       const photo = await getData({ id });
-      renderPhoto(photoWrapper, photo);
+      const buttonLikes = renderPhoto(photoWrapper, photo);
+
+      buttonLikes.addEventListener("click", () => {
+        if (localStorage.getItem("token")) {
+          handlerLike(buttonLikes);
+        }
+      });
     }
   }
 };
