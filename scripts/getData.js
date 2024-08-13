@@ -13,7 +13,7 @@ export const getData = async ({ count, page, id }) => {
   if (id) {
     url.pathname += `/${id}`;
   }
-  console.log("url: ", url);
+
   return fetch(url)
     .then((data) => data.json())
     .catch((err) => console.log(`Возникла ошибка ${err}`));
